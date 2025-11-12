@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.14.7)
+project(everest-tutorial-python VERSION 0.1
+    DESCRIPTION "EVerest tutorial module - Python implementation"
+    LANGUAGES NONE)
+
+# Install interface definition
+install(
+    FILES interfaces/interface_tutorial_module.yaml
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/everest/interfaces
+)
+
+# Install Python module
+install(
+    DIRECTORY modules/TutorialModulePy
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/everest/modules
+    FILES_MATCHING 
+    PATTERN "*.py"
+    PATTERN "*.yaml"
+)
+
+# Make the Python module executable
+install(
+    FILES modules/TutorialModulePy/tutorial_module.py
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/everest/modules/TutorialModulePy
+    PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
+)
