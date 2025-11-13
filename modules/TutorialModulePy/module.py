@@ -17,8 +17,8 @@ class TutorialModulePy(Module):
     Python implementation of the EVerest Tutorial Module.
     """
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, session: RuntimeSession):
+        super().__init__(session)
         self.config_tutorial_switch = None
 
     def _setup(self, runtime_session: RuntimeSession):
@@ -57,6 +57,10 @@ class TutorialModulePy(Module):
 
 
 if __name__ == "__main__":
-    # Create and run the module
-    module = TutorialModulePy()
+    # RuntimeSession is provided by the EVerest manager
+    import sys
+    from everest.framework import RuntimeSession
+    
+    session = RuntimeSession.from_main()
+    module = TutorialModulePy(session)
     module.run()
