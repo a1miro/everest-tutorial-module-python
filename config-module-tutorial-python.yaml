@@ -4,12 +4,3 @@
 active_modules:
   tutorial_python_instance:
     module: TutorialModulePy
-    config_implementation: {}
-    config_module:
-      config_tutorial_switch: true
-
-settings:
-  # MQTT broker configuration
-  mqtt:
-    broker_host: localhost
-    broker_port: 1883
