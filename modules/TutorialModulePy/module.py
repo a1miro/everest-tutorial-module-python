@@ -57,10 +57,11 @@ class TutorialModulePy(Module):
 
 
 if __name__ == "__main__":
-    # RuntimeSession is provided by the EVerest manager
+    # The EVerest manager creates and injects the RuntimeSession
+    # The module is called with: python module.py <session_info>
     import sys
-    from everest.framework import RuntimeSession
     
-    session = RuntimeSession.from_main()
+    # Create session from command line arguments provided by manager
+    session = RuntimeSession(sys.argv[1], sys.argv[2])
     module = TutorialModulePy(session)
     module.run()
