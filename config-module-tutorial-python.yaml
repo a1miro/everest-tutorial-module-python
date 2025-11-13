@@ -13,14 +13,3 @@ settings:
   mqtt:
     broker_host: localhost
     broker_port: 1883
-    # Optional: authentication
-    # broker_username: everest
-    # broker_password: everest
-
-  # Logging configuration
-  logging:
-    # Set log level: verbose, debug, info, warning, error, critical
-    default_level: info
-    # Module-specific log levels
-    modules:
-      TutorialModulePy: debug
