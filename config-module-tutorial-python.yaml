@@ -1,0 +1,26 @@
+# EVerest Configuration for Python Tutorial Module
+# This configuration file demonstrates how to run the TutorialModulePy module
+
+active_modules:
+  tutorial_python_instance:
+    module: TutorialModulePy
+    config_implementation: {}
+    config_module:
+      config_tutorial_switch: true
+
+settings:
+  # MQTT broker configuration
+  mqtt:
+    broker_host: localhost
+    broker_port: 1883
+    # Optional: authentication
+    # broker_username: everest
+    # broker_password: everest
+
+  # Logging configuration
+  logging:
+    # Set log level: verbose, debug, info, warning, error, critical
+    default_level: info
+    # Module-specific log levels
+    modules:
+      TutorialModulePy: debug

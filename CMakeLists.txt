@@ -3,6 +3,13 @@ project(everest-tutorial-python VERSION 0.1
     DESCRIPTION "EVerest tutorial module - Python implementation"
     LANGUAGES NONE)
 
+# Install config-module-tutorial-python.yaml to /etc/everest
+install(
+    FILES config-module-tutorial-python.yaml
+    DESTINATION ${CMAKE_INSTALL_SYSCONFDIR}/everest
+)
+
+
 # Install interface definition
 install(
     FILES interfaces/interface_tutorial_module.yaml
