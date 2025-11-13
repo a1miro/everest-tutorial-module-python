@@ -1,0 +1,24 @@
+description: A client module that uses the TutorialModulePy via interface_tutorial_module
+config:
+  client_name:
+    description: Name identifier for this client instance.
+    type: string
+    default: "DefaultClient"
+  poll_interval_seconds:
+    description: How often to poll the tutorial module (in seconds).
+    type: number
+    default: 10
+provides:
+  main:
+    description: Internal implementation (module has no external interface)
+    interface: empty
+    config: {}
+requires:
+  tutorial_interface:
+    interface: interface_tutorial_module
+enable_external_mqtt: false
+metadata:
+  license: https://opensource.org/licenses/Apache-2.0
+  authors:
+    - Andrei Mironenko, Parallel Dynamic Ltd.
+  base_license: https://opensource.org/licenses/Apache-2.0

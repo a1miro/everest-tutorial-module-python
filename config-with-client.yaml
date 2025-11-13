@@ -1,0 +1,20 @@
+# EVerest Configuration with Tutorial Module and Client
+# This configuration demonstrates two Python modules communicating via interface_tutorial_module
+
+active_modules:
+  tutorial_python_instance:
+    module: TutorialModulePy
+    config_implementation: {}
+    config_module:
+        config_tutorial_switch: true
+  
+  client_instance:
+    module: TutorialClientPy
+    config_implementation: {}
+    config_module:
+      client_name: "MyTestClient"
+      poll_interval_seconds: 5
+    connections:
+      tutorial_interface:
+        - module_id: tutorial_python_instance
+          implementation_id: interface_impl_tutorial_module

@@ -47,7 +47,7 @@ class TutorialModulePy(Module):
         Returns:
             The response string (default: "everest")
         """
-        self.logger.info(f"Received command_tutorial with payload: {payload}")
+        print(f"[TUTORIAL] Received command_tutorial with payload: {payload}")
 
         # You can add your custom logic here
         if self.config_tutorial_switch:
@@ -55,10 +55,6 @@ class TutorialModulePy(Module):
         else:
             return "everest"
 
-# Register command handlers (MUST be done after say_hello, before init_done)
-    def handle_command_tutorial(args):
-        """Handler wrapper for command_tutorial"""
-        return module.command_tutorial(args["payload"])
 
 if __name__ == "__main__":
     # The EVerest manager creates and injects the RuntimeSession
@@ -78,7 +74,34 @@ if __name__ == "__main__":
     # Access configuration
     module.config_tutorial_switch = setup.configs.module.get("config_tutorial_switch", False)
 
+    # Register command handlers (MUST be done after say_hello, before init_done)
+    def handle_command_tutorial(args):
+        """Handler wrapper for command_tutorial"""
+        return module.command_tutorial(args["payload"])
+    
     module.implement_command("interface_impl_tutorial_module", "command_tutorial", handle_command_tutorial)
-
+    
     # Signal that we're ready
     module.init_done()
+    
+    # Keep the module running
+    print("Tutorial module is running and waiting for commands...")
+    
+    import signal
+    import time
+    
+    # Use a list to allow mutation from signal handler
+    running = [True]
+    
+    def signal_handler(signum, frame):
+        print("Received shutdown signal, exiting...")
+        running[0] = False
+    
+    signal.signal(signal.SIGTERM, signal_handler)
+    signal.signal(signal.SIGINT, signal_handler)
+    
+    try:
+        while running[0]:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("Keyboard interrupt received, exiting...")
