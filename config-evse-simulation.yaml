@@ -8,15 +8,21 @@ active_modules:
     config_module:
       connector_id: 1
     
-  # SLAC simulator
+  # SLAC implementation for WhiteBeet via proxy
+  # Note: Requires slac-proxy service running to create slac0 interface
   slac:
-    module: SlacSimulator
-    
+    module: EvseSlac
+    config_implementation:
+      main:
+        device: slac0
+        number_of_sounds: 10
+        ac_mode_five_percent: true
+        set_key_timeout_ms: 1000
   # ISO15118 charger
   iso15118_charger:
     module: EvseV2G
     config_module:
-      device: auto
+      device: eth0
       tls_security: prohibit
       supported_DIN70121: false
       supported_ISO15118_2: true
@@ -52,7 +58,7 @@ active_modules:
           implementation_id: charger
       slac:
         - module_id: slac
-          implementation_id: evse
+          implementation_id: main
       connector_lock:
         - module_id: yeti
           implementation_id: connector_lock
